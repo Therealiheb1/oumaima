@@ -1,0 +1,45 @@
+.no-top-space {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.full-width-image {
+  width: 100%;
+  height: auto; 
+}
+
+.map-container {
+  width: 100%;
+  height: 450px;
+  margin-top: 20px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.chart-options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust as needed */
+}
+
+#chart {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.options-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.options-container label {
+  margin-bottom: 10px;
+}
