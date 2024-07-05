@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-sm-4">
+                <div class="search-box me-2 mb-2 d-inline-block">
+                  <div class="position-relative">
+                    <input type="text" class="form-control" placeholder="Rechercher..." [(ngModel)]="searchTerm" (input)="onSearch()">
+                    <i class="bx bx-search-alt search-icon"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="text-sm-end">
+                  <button type="button" class="btn btn-success btn-rounded mb-2 me-2" (click)="navigateToCreateFormation()">
+                    <i class="mdi mdi-plus mr-1"></i> Ajouter une formation
+                  </button>
+                  <button type="button" class="btn btn-outline-primary btn-rounded mb-2 me-2" (click)="toggleFormations()">
+                    {{ showCurrentFormations ? 'Afficher les formations archivées' : 'Afficher les formations actuelles' }}
+                  </button>
+                </div>
+              </div><!-- end col-->
+            </div>
+  
+            <!-- Table data -->
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Nom de la formation</th>
+                    <th>Local</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Lien d'inscription</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let formation of paginatedFormations">
+                    <td>{{ formation.formationName }}</td>
+                    <td>{{ formation.local }}</td>
+                    <td>{{ formation.timeB | date:'mediumDate' }}</td>
+                    <td>{{ formation.timeE | date:'mediumDate' }}</td>
+                    <td>{{ formation.description }}</td>
+                    <td>{{ formation.prix }}</td>
+                    <td><a [href]="formation.lien_inscription" target="_blank">{{ formation.lien_inscription }}</a></td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="navigateToEditFormation(formation.id)">Modifier</button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteFormation(formation.id)">Supprimer</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+            <!-- Pagination -->
+            <ul class="pagination pagination-rounded justify-content-end mb-2">
+              <li class="page-item" [ngClass]="{ 'disabled': currentPage === 1 }">
+                <a class="page-link" href="javascript:void(0);" (click)="onPageChange(currentPage - 1)" aria-label="Précédent">
+                  <i class="mdi mdi-chevron-left"></i>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let page of getPaginationArray()" [ngClass]="{ 'active': page === currentPage }">
+                <a class="page-link" href="javascript:void(0);" (click)="onPageChange(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [ngClass]="{ 'disabled': currentPage === getPaginationArray().length }">
+                <a class="page-link" href="javascript:void(0);" (click)="onPageChange(currentPage + 1)" aria-label="Suivant">
+                  <i class="mdi mdi-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

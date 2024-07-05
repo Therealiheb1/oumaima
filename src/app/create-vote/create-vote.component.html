@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createVoteModalLabel">Création d'un vote</h5>
+              <button type="button" class="btn-close" (click)="navigateToVotes()" aria-label="Close"></button>
+            </div>
+  
+            <form (ngSubmit)="submitVote()">
+              <div class="mb-3">
+                <label for="voteName" class="form-label">Nom du vote</label>
+                <input type="text" class="form-control" id="voteName" name="voteName" [(ngModel)]="vote.voteName" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="choices" class="form-label">Choices</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" [(ngModel)]="choiceName" placeholder="Ajouter un choix" name="choiceName">
+                  <button type="button" class="btn btn-secondary" (click)="addChoice()">Ajouter</button>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let choice of objectKeys(vote.choices)">
+                    {{ choice }}
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeChoice(choice)">Supprimer</button>
+                  </li>
+                </ul>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Créer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

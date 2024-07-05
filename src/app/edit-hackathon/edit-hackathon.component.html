@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title">Modifier Hackathon</h5>
+              <button type="button" class="btn-close" (click)="navigateToHackathons()" aria-label="Close"></button>
+            </div>
+  
+            <form [formGroup]="hackathonForm" (ngSubmit)="submitHackathon()">
+              <div class="mb-3">
+                <label for="hackName" class="form-label">Nom du Hackathon</label>
+                <input type="text" class="form-control" id="hackName" formControlName="hackName" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="local" class="form-label">Localisation</label>
+                <input type="text" class="form-control" id="local" formControlName="local" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="time" class="form-label">Date et Heure</label>
+                <input type="text" class="form-control" id="time" formControlName="time" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" required></textarea>
+              </div>
+  
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" formControlName="prix" required>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title">Modification d'un événement</h5>
+              <button type="button" class="btn-close" (click)="navigateToEvents()" aria-label="Close"></button>
+            </div>
+  
+            <form [formGroup]="eventForm" (ngSubmit)="submitEvent()">
+              <div class="mb-3">
+                <label for="eventName" class="form-label">Nom de l'événement</label>
+                <input type="text" class="form-control" id="eventName" formControlName="eventName" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="local" class="form-label">Local</label>
+                <input type="text" class="form-control" id="local" formControlName="local" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="time" class="form-label">Date</label>
+                <input type="text" class="form-control" id="time" formControlName="time" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" required></textarea>
+              </div>
+  
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" formControlName="prix" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="image" class="form-label">Image (URL)</label>
+                <input type="text" class="form-control" id="image" formControlName="image">
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title">Vote</h5>
+              <button type="button" class="btn-close" (click)="navigateToVotes()" aria-label="Close"></button>
+            </div>
+  
+            <form [formGroup]="voteForm" (ngSubmit)="submitVote()">
+              <div class="mb-3">
+                <label for="voteName" class="form-label" [class.disabled-label]="voteForm.get('voteName').disabled">Nom du vote</label>
+                <input type="text" class="form-control" id="voteName" formControlName="voteName" [disabled]="voteForm.get('voteName').disabled" (input)="formChanged = true" >
+              </div>
+  
+              <div class="mb-3" formGroupName="choices">
+                <label class="form-label">Choices</label>
+                <div class="input-group mb-3" *ngFor="let choice of formControls | keyvalue">
+                  <input type="text" class="form-control" [formControlName]="choice.key" disabled>
+                  <button type="button" class="btn btn-danger" (click)="removeChoice(choice.key)">Supprimer</button>
+                </div>
+              </div>
+  
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title">Modification d'une formation</h5>
+              <button type="button" class="btn-close" (click)="navigateToFormations()" aria-label="Fermer"></button>
+            </div>
+  
+            <form [formGroup]="formationForm" (ngSubmit)="submitFormation()">
+              <div class="mb-3">
+                <label for="formationName" class="form-label">Nom de la formation</label>
+                <input type="text" class="form-control" id="formationName" formControlName="formationName" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="local" class="form-label">Local</label>
+                <input type="text" class="form-control" id="local" formControlName="local" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="timeB" class="form-label">Date de début</label>
+                <input type="text" class="form-control" id="timeB" formControlName="timeB" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="timeE" class="form-label">Date de fin</label>
+                <input type="text" class="form-control" id="timeE" formControlName="timeE" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" required></textarea>
+              </div>
+  
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" formControlName="prix" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="lien_inscription" class="form-label">Lien d'inscription</label>
+                <input type="text" class="form-control" id="lien_inscription" formControlName="lien_inscription">
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

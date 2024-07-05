@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createFormationModalLabel">Création d'un événement</h5>
+                <button type="button" class="btn-close" (click)="navigateToEvent()" aria-label="Close"></button>
+              </div>
+  
+            <form (ngSubmit)="submitEvent()">
+              <div class="mb-3">
+                <label for="eventName" class="form-label">Nom de l'événement</label>
+                <input type="text" class="form-control" id="eventName" name="eventName" [(ngModel)]="event.eventName" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="local" class="form-label">Localisation</label>
+                <input type="text" class="form-control" id="local" name="local" [(ngModel)]="event.local" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="time" class="form-label">Date</label>
+                <input type="date" class="form-control" id="time" name="time" [(ngModel)]="event.time" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" [(ngModel)]="event.description" rows="3" required></textarea>
+              </div>
+  
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" name="prix" [(ngModel)]="event.prix" required>
+              </div>
+  
+         
+  
+              <div class="mb-3">
+                <label for="image" class="form-label">Image (URL)</label>
+                <input type="text" class="form-control" id="image" name="image" [(ngModel)]="event.image">
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Créer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

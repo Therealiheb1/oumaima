@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createFormationModalLabel">Ajouter une formation</h5>
+              <button type="button" class="btn-close" (click)="navigateToFormation()" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="submitForm()">
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="formationName" class="form-label">Nom de la formation</label>
+                  <input type="text" class="form-control" id="formationName" name="formationName" [(ngModel)]="formation.formationName" required>
+                </div>
+                <div class="mb-3">
+                  <label for="local" class="form-label">Localisation</label>
+                  <input type="text" class="form-control" id="local" name="local" [(ngModel)]="formation.local" required>
+                </div>
+                <div class="mb-3">
+                  <label for="timeB" class="form-label">Date de début</label>
+                  <input type="date" class="form-control" id="timeB" name="timeB" [(ngModel)]="formation.timeB" required>
+                </div>
+                <div class="mb-3">
+                  <label for="timeE" class="form-label">Date de fin</label>
+                  <input type="date" class="form-control" id="timeE" name="timeE" [(ngModel)]="formation.timeE" required>
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description" [(ngModel)]="formation.description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="prix" class="form-label">Prix</label>
+                  <input type="number" class="form-control" id="prix" name="prix" [(ngModel)]="formation.prix" required>
+                </div>
+                <div class="mb-3">
+                  <label for="lien_inscription" class="form-label">Lien d'inscription</label>
+                  <input type="url" class="form-control" id="lien_inscription" name="lien_inscription" [(ngModel)]="formation.lien_inscription" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
