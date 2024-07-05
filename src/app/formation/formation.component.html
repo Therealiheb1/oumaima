@@ -1,41 +1,41 @@
-<div class="row">
-    <div class="col-lg-12">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Nos formations</h4>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nom de la formation</th>
-                                <th>Date</th>
-                                <th>Prix</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Formation A</td>
-                                <td>01/08/2024</td>
-                                <td>100€</td>
-                                <td><button class="btn btn-primary">Inscrire</button></td>
-                            </tr>
-                            <tr>
-                                <td>Formation B</td>
-                                <td>15/08/2024</td>
-                                <td>150€</td>
-                                <td><button class="btn btn-primary">Inscrire</button></td>
-                            </tr>
-                            <tr>
-                                <td>Formation C</td>
-                                <td>30/08/2024</td>
-                                <td>200€</td>
-                                <td><button class="btn btn-primary">Inscrire</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Nom de la Formation</th>
+                    <th>Localisation</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Inscrire</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let formation of formations">
+                    <td>{{ formation.formationName }}</td>
+                    <td>{{ formation.local }}</td>
+                    <td>{{ formation.timeB }}</td>
+                    <td>{{ formation.time }}</td>
+                    <td>{{ formation.description }}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm"
+                         [href]="formation.lien_inscription"
+                         target="_blank"
+                         rel="noopener noreferrer">
+                         Inscrire
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  

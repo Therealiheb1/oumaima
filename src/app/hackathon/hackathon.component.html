@@ -1,22 +1,32 @@
-<div class="card">
-    <div class="card-header">
-      <div class="card-logo">
-        <img src="tiktok-logo.png" alt="TikTok TechJam">
-      </div>
-      <div class="card-title">
-        <h2>2024 TikTok TechJam</h2>
-        <p><span class="days-left">3 days left</span></p>
-      </div>
-    </div>
-    <div class="card-body">
-      <p><strong>$67,500</strong> in prizes</p>
-      <p><strong>4199</strong> participants</p>
-    </div>
-    <div class="card-footer">
-      <div class="tags">
-        <span>Communication</span>
-        <span>Cybersecurity</span>
-        <span>Machine Learning/AI</span>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" *ngFor="let hackathon of hackathons">
+            <div class="card h-100">
+              <div class="card-header">
+                <div class="card-logo">
+                  <img [src]="hackathon.image" alt="Hackathon Logo">
+                </div>
+                <div class="card-title">
+                  <h2>{{ hackathon.hackName }}</h2>
+                 
+                </div>
+              </div>
+              <div class="card-body">
+                <p>Prix : <strong>{{ hackathon.prix }} DT</strong></p>
+                <p>Local :  <strong>{{ hackathon.local }}</strong></p>
+                <p>Date :  <strong>{{ hackathon.time }}</strong></p>
+              </div>
+              <div class="card-footer">
+                <div class="tags">
+                  <span>{{ hackathon.description }}</span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

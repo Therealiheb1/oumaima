@@ -1,6 +1,4 @@
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-
-
   <div class="d-lg-flex">
     <div class="chat-leftsidebar me-lg-4">
       <div class="w-100 user-chat">
@@ -18,6 +16,18 @@
                         <div class="conversation-name">{{ data.name }}</div>
                         <p>{{ data.message }}</p>
                         <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ data.time }}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="conversation-list">
+                      <div class="ctext-wrap">
+                        <div class="conversation-name">Questions prédéfinies</div>
+                        <ul class="list-group">
+                          <li class="list-group-item" *ngFor="let question of predefinedQuestions" (click)="onPredefinedQuestionClick(question)">
+                            {{ question }}
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </li>

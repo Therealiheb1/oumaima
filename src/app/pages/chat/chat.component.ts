@@ -1,9 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-
-import { ChatUser, ChatMessage } from './chat.model';
-
-import { chatData, chatMessagesData } from './data';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat',
@@ -15,23 +12,31 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollEle') scrollEle;
   @ViewChild('scrollRef') scrollRef;
 
-  username = 'Steven Franklin';
+  username = 'Oumaima';
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
 
-  chatData: ChatUser[];
-  chatMessagesData: ChatMessage[];
+  chatMessagesData: { name: string, message: string, time: string, align?: string }[] = [];
 
   formData: FormGroup;
 
   // Form submit
   chatSubmit: boolean;
 
-  usermessage: string;
+  private apiUrl = 'http://localhost:8181/chatbot/ask'; // Adjust the API URL if needed
 
-  constructor(public formBuilder: FormBuilder) {
-  }
+  predefinedQuestions: string[] = [
+    "Bonjour",
+    "Adresse ?",
+    "Contact ?",
+    "Sites Web et liens sociaux ?"
+  ];
+
+  constructor(
+    public formBuilder: FormBuilder,
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Chat', active: true }];
@@ -41,8 +46,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     });
 
     this.onListScroll();
-
-    this._fetchData();
   }
 
   ngAfterViewInit() {
@@ -57,11 +60,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     return this.formData.controls;
   }
 
-  private _fetchData() {
-    this.chatData = chatData;
-    this.chatMessagesData = chatMessagesData;
-  }
-
   onListScroll() {
     if (this.scrollRef !== undefined) {
       setTimeout(() => {
@@ -71,18 +69,32 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
   }
 
-  chatUsername(name) {
-    this.username = name;
-    this.usermessage = 'Hello';
-    this.chatMessagesData = [];
-    const currentDate = new Date();
+  askQuestion(question: string) {
+    let params = new HttpParams().set('question', question);
+    return this.http.get(this.apiUrl, { params, responseType: 'text' });
+  }
 
+  /**
+   * Handle predefined question click
+   */
+  onPredefinedQuestionClick(question: string) {
+    const currentDate = new Date();
     this.chatMessagesData.push({
-      name: this.username,
-      message: this.usermessage,
+      align: 'right',
+      name: 'Moi',
+      message: question,
       time: currentDate.getHours() + ':' + currentDate.getMinutes()
     });
+    this.onListScroll();
 
+    this.askQuestion(question).subscribe(response => {
+      this.chatMessagesData.push({
+        name: 'Chatbot',
+        message: response,
+        time: currentDate.getHours() + ':' + currentDate.getMinutes()
+      });
+      this.onListScroll();
+    });
   }
 
   /**
@@ -92,7 +104,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     const message = this.formData.get('message').value;
     const currentDate = new Date();
     if (this.formData.valid && message) {
-      // Message Push in Chat
+      // User's message
       this.chatMessagesData.push({
         align: 'right',
         name: 'Henry Wells',
@@ -101,13 +113,20 @@ export class ChatComponent implements OnInit, AfterViewInit {
       });
       this.onListScroll();
 
-      // Set Form Data Reset
-      this.formData = this.formBuilder.group({
-        message: null
+      // Call the chat service to get the response
+      this.askQuestion(message).subscribe(response => {
+        this.chatMessagesData.push({
+          name: 'Chatbot',
+          message: response,
+          time: currentDate.getHours() + ':' + currentDate.getMinutes()
+        });
+        this.onListScroll();
       });
+
+      // Reset Form Data
+      this.formData.reset();
     }
 
     this.chatSubmit = true;
   }
-
 }

@@ -1,8 +1,20 @@
-<div class="card">
-    <img src="assets/elife.png" alt="Photo" class="card-img">
-    <div class="card-content">
-      <h2>Card Title</h2>
-      <p>test khw</p>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" *ngFor="let event of events">
+            <div class="card h-100">
+              <img [src]="event.image" class="card-img-top" alt="Event Image">
+              <div class="card-body">
+                <h3 class="card-title">{{ event.eventName }}</h3>
+                <h5 class="card-text">{{ event.location }}</h5>
+                <p class="card-text">{{ event.date }} | {{ event.time }}</p>
+                <p class="card-text">{{ event.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   

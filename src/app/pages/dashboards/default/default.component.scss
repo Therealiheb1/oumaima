@@ -33,13 +33,27 @@
 }
 
 .options-container {
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 20px;
+  justify-content: center;
+  align-items: flex-start; /* Adjust alignment as needed */
+  flex-wrap: wrap; /* Wrap items if they exceed container width */
 }
 
 .options-container label {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
+  color: #495057; /* Adjust text color as needed */
+}
+
+.options-container input[type="radio"] {
+  margin-right: 8px; /* Adjust spacing between radio button and label */
+  cursor: pointer;
+}
+
+.options-container .selected-indicator {
+  color: #28a745; /* Adjust color for selected indicator */
+  margin-left: 5px; /* Adjust spacing between label and indicator */
+  font-weight: bold;
 }

@@ -1,9 +1,11 @@
 <app-loader></app-loader>
+
 <div class="container-fluid">
     <div class="no-top-space">
         <img src="assets/elif.png" alt="Example Image" class="full-width-image">
     </div>
-    <div class="row justify-content-center">
+
+    <div class="row justify-content-center mt-4">
         <div class="col-xl-8">
             <div class="card">
                 <div class="card-body">
@@ -23,8 +25,14 @@
                         </div>
                         <div class="col-4">
                             <div class="social-source text-center mt-3">
-                                <div class="avatar-xs mx-auto mb-3"></div>
-                                <h5 class="font-size-15"></h5>
+                                <a href="https://www.linkedin.com/in/marwa-cherni-3a830877?originalSubdomain=tn" target="_blank">
+                                    <div class="avatar-xs mx-auto mb-3">
+                                        <span class="avatar-title rounded-circle bg-primary font-size-16">
+                                            <i class="mdi mdi-linkedin text-white"></i>
+                                        </span>
+                                    </div>
+                                    <h5 class="font-size-15">LinkedIn</h5>
+                                </a>
                             </div>
                         </div>
                         <div class="col-4">
@@ -44,8 +52,8 @@
             </div>
         </div>
     </div>
-    
-    <div class="row justify-content-center">
+
+    <div class="row justify-content-center mt-4">
         <div class="col-xl-8">
             <div class="card">
                 <div class="card-body">
@@ -67,28 +75,33 @@
         </div>
     </div>
 
-   
-
-    <div class="chart-options-container">
-        <div id="chart">
-            <apx-chart
-              [series]="chartOptions.series"
-              [chart]="chartOptions.chart"
-              [labels]="chartOptions.labels"
-              [responsive]="chartOptions.responsive"
-            ></apx-chart>
-        </div>
-        <div class="options-container">
-            <label>
-                <input type="radio" name="options" value="dev"> Dev
-            </label>
-            <label>
-                <input type="radio" name="options" value="mobile"> Mobile
-            </label>
-            <label>
-                <input type="radio" name="options" value="data"> Data
-            </label>
+    <!-- Chart Section -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Votes</h4>
+                    <div class="chart-options-container">
+                        <div id="chart">
+                            <apx-chart
+                                [series]="chartOptions.series"
+                                [chart]="chartOptions.chart"
+                                [labels]="chartOptions.labels"
+                                [responsive]="chartOptions.responsive">
+                            </apx-chart>
+                        </div>
+                        <div class="options-container" *ngIf="votes[0]?.choices && votes[0]?.choices.length > 0">
+                            <div *ngFor="let candidate of votes[0].choices; let i = index">
+                                <label>
+                                    <input type="radio" name="options" [value]="i" (change)="voteForCandidate(i)">
+                                    {{ candidate.name }}
+                                </label>
+                                <span *ngIf="selectedCandidate === candidate.name" class="selected-indicator">Selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
 </div>
